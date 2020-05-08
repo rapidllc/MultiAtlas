@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<executable>
+  <category>RPTDose</category>
+  <title>Atlas training</title>
+  <description>Atlas creation and re-training. Does image resampling if needed.</description>
+  <version></version>
+  <documentation-url></documentation-url>
+  <license></license>
+  <contributor>Dženan Zukić (Kitware Inc.)</contributor>
+  <acknowledgements></acknowledgements>
+
+  <parameters>
+    <label>General</label>
+    <description>Invocation mode and atlas path</description>
+
+    <string-enumeration>
+      <flag>m</flag>
+      <longflag>mode</longflag>
+      <description>Whether to update or create atlasTreeXML</description>
+      <label>Mode</label>
+      <default>Retrain atlas</default>
+      <element>Train atlas</element>
+      <element>Retrain atlas</element>
+    </string-enumeration>
+
+    <file fileExtensions=".xml">
+     <longflag>atlasTreeXML</longflag>
+     <flag>a</flag>
+     <description>xml file of the multi-atlases after training</description>
+     <label>Multi-Atlas XML</label>
+     <channel>output</channel>
+   </file>
+
+   <directory>
+     <longflag>imageDir</longflag>
+     <flag>d</flag>
+     <description>A temporary directory where to write transformed, resampled and cropped images.</description>
+     <label>Image directory</label>
+     <channel>input</channel>
+   </directory>
+  </parameters>
+
+  <parameters advanced="true">
+    <label>Registration</label>
+    <description>Parameters used for registration</description>
+
+    <integer-vector>
+      <flag>i</flag>
+      <longflag>iterations</longflag>
+      <description>Comma separated list of iterations, for low resolution, middle resolution, and high resolution. </description>
+      <label>Iterations</label>
+      <default>5,3,2</default>
+    </integer-vector>
+
+    <double>
+      <flag>s</flag>
+      <longflag>sigma</longflag>
+      <description>The standard deviation for smoothing deformation field</description>
+      <label>Smoothing</label>
+      <default>1.5</default>
+    </double>
+  </parameters>
+
+  <parameters advanced="true">
+    <label>Interpolation</label>
+    <description>Interpolation used for re-sampling</description>
+
+    <string-enumeration>
+      <longflag>imageInterpolation</longflag>
+      <description>Which interpolation to use for image resampling</description>
+      <label>Image interpolation</label>
+      <default>CubicSpline</default>
+      <element>Linear</element>
+      <element>CubicSpline</element>
+      <element>WindowedSinc</element>
+    </string-enumeration>
+
+    <string-enumeration>
+      <longflag>segmentationInterpolation</longflag>
+      <description>Which interpolation to use for segmentation resampling</description>
+      <label>Segmentation interpolation</label>
+      <default>Smooth</default>
+      <element>Nearest</element>
+      <element>Smooth</element>
+    </string-enumeration>
+  </parameters>
+
+  <parameters>
+    <label>Images, Segmentations and Transforms</label>
+    <description>Images, segmentations and optional transforms. If transform is not specified, identity transform is assumed.</description>
+    <image type="scalar">
+      <longflag>image0</longflag>
+      <description>An input image</description>
+      <label>Image 0</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation0</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 0</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform0</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 0</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image1</longflag>
+      <description>An input image</description>
+      <label>Image 1</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation1</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 1</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform1</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 1</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image2</longflag>
+      <description>An input image</description>
+      <label>Image 2</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation2</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 2</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform2</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 2</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image3</longflag>
+      <description>An input image</description>
+      <label>Image 3</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation3</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 3</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform3</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 3</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image4</longflag>
+      <description>An input image</description>
+      <label>Image 4</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation4</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 4</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform4</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 4</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image5</longflag>
+      <description>An input image</description>
+      <label>Image 5</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation5</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 5</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform5</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 5</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image6</longflag>
+      <description>An input image</description>
+      <label>Image 6</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation6</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 6</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform6</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 6</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image7</longflag>
+      <description>An input image</description>
+      <label>Image 7</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation7</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 7</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform7</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 7</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image8</longflag>
+      <description>An input image</description>
+      <label>Image 8</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation8</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 8</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform8</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 8</label>
+      <channel>input</channel>
+    </transform>
+    <image type="scalar">
+      <longflag>image9</longflag>
+      <description>An input image</description>
+      <label>Image 9</label>
+      <channel>input</channel>
+    </image>
+    <image type="label">
+      <longflag>segmentation9</longflag>
+      <description>The output segmentation</description>
+      <label>Segmentation 9</label>
+      <channel>input</channel>
+    </image>
+    <transform fileExtensions=".tfm,.h5,.hdf5,.mat,.txt">
+      <longflag>transform9</longflag>
+      <description>A transform which aligns the image to the atlas root</description>
+      <label>Transform 9</label>
+      <channel>input</channel>
+    </transform>
+  </parameters>
+</executable>
