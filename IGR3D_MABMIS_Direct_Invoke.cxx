@@ -25,6 +25,21 @@ AffineType::Pointer identity = AffineType::New();
 //  1 = LabelImageGaussianInterpolate (smoother alternative to nearest neighbor)
 //  3 = cubic BSpline
 //  5 = WindowedSinc with radius of 5 voxels
+
+void GetImageType (std::string fileName,
+                     ImageIOBase::IOPixelType &pixelType,
+                     ImageIOBase::IOComponentType &componentType)
+    {
+      typedef itk::Image<unsigned char, 3> ImageType;
+      itk::ImageFileReader<ImageType>::Pointer imageReader =
+        itk::ImageFileReader<ImageType>::New();
+      imageReader->SetFileName(fileName.c_str());
+      imageReader->UpdateOutputInformation();
+
+      pixelType = imageReader->GetImageIO()->GetPixelType();
+      componentType = imageReader->GetImageIO()->GetComponentType();
+    }
+
 template<typename PixelType>
 void resampleAndWrite(const std::string & inFile, const std::string & outFile,
     ShortImageType::RegionType region,
