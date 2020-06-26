@@ -179,7 +179,7 @@ void resampleOrCopy(const std::string & inFile,
   //inImage componenet type
   itk::ImageIOBase::IOPixelType pixelType;
   itk::ImageIOBase::IOComponentType componentType;
-  itk::GetImageType(inFile, pixelType, componentType);
+  GetImageType(inFile, pixelType, componentType);
 
   shortReader->SetFileName(inFile);
   shortReader->UpdateOutputInformation();
