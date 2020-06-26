@@ -11,7 +11,7 @@
 #include "itkNearestNeighborInterpolateImageFunction.h"
 #include "itkLabelImageGaussianInterpolateImageFunction.h"
 #include "itkMinimumMaximumImageCalculator.h"
-#include "itkPluginUtilities.h"
+//#include "itkPluginUtilities.h"
 
 const unsigned int Dimension = 3;
 typedef itk::Image<short, Dimension> ShortImageType;
