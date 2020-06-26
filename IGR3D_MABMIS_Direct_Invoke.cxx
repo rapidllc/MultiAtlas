@@ -30,8 +30,8 @@ AffineType::Pointer identity = AffineType::New();
 //  5 = WindowedSinc with radius of 5 voxels
 
 void GetImageType (std::string fileName,
-                     ImageIOBase::IOPixelType &pixelType,
-                     ImageIOBase::IOComponentType &componentType)
+                     itk::ImageIOBase::IOPixelType &pixelType,
+                     itk::ImageIOBase::IOComponentType &componentType)
     {
       typedef itk::Image<unsigned char, 3> ImageType;
       itk::ImageFileReader<ImageType>::Pointer imageReader =
