@@ -23,3 +23,7 @@ RUN cmake \
   /multiatlas
 
 RUN make
+
+WORKDIR /multiatlas-rel/bin
+RUN cp /multiatlas/cli_list.py /multiatlas/cli_list.json /multiatlas-rel/bin
+ENTRYPOINT ["python", "./cli_list.py"]

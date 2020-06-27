@@ -1,0 +1,14 @@
+{
+    "IGR3D_MABMIS_Direct_Invoke": {
+      "type": "cxx"
+    },
+    "IGR3D_MABMIS_Direct_Training": {
+      "type": "cxx"
+    },
+    "IGR3D_MABMIS_Testing": {
+      "type": "cxx"
+    },
+    "IGR3D_MABMIS_Training": {
+      "type": "cxx"
+    }
+  }
