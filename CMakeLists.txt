@@ -13,9 +13,9 @@ find_package(SlicerExecutionModel REQUIRED)
 include(${SlicerExecutionModel_USE_FILE})
 
 set(MABMIS_ITK_COMPONENTS
-  ITKIOImageBase
+  ITKImageIO
   ITKTransform
-  ITKIOTransformBase
+  ITKTransformIO
   ITKIOXML
   ITKImageGrid
   ITKImageFunction
@@ -23,7 +23,7 @@ set(MABMIS_ITK_COMPONENTS
   ITKSmoothing
   )
 find_package(ITK 4.6 COMPONENTS ${MABMIS_ITK_COMPONENTS} REQUIRED)
-set(ITK_NO_IO_FACTORY_REGISTER_MANAGER 1) # See Libs/ITKFactoryRegistration/CMakeLists.txt
+#set(ITK_NO_IO_FACTORY_REGISTER_MANAGER 1) # See Libs/ITKFactoryRegistration/CMakeLists.txt
 include(${ITK_USE_FILE})
 
 
